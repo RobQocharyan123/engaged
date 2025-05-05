@@ -1,18 +1,60 @@
 .header {
   width: 100%;
   margin-top: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  height: 70vh;
 }
 
 .header h1 {
-  color: #000;
+  color: #fff;
   font-size: 25px;
   font-family: 'MontserratARM', Arial, sans-serif;
   line-height: 1.55;
-  font-weight: 400;
+  font-weight: 700;
   text-transform: uppercase;
   opacity: 0.8;
   background-position: center center;
   border-color: transparent;
   border-style: solid;
   text-align: center;
+}
+
+.header .endIcon {
+  width: 150px;
+  position: absolute;
+  left: 2px;
+  z-index: 1;
+}
+
+.header .name {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+.header .name p {
+  color: #f4f4f4;
+  font-size: 35px;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  margin: 0;
+}
+
+.header .music {
+  position: absolute;
+  top: 150px;
+}
+.header .music svg {
+  font-size: 50px;
+  cursor: pointer;
+  z-index: 2;
+  color: #fff;
 }
