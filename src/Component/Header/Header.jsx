@@ -1,44 +1,90 @@
 import './Header.css';
 
 import endIcon from '../../Assets/header/end-icon.svg';
-import musicPlayIcon from '../../Assets/header/music-play-icon.svg';
 import musicFile from '../../Assets/music.mp3';
-import { useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { PauseCircleOutlined, PlayCircleOutlined } from '@ant-design/icons';
+import { motion } from 'framer-motion';
 
 const Header = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    // Create the Audio object only once
+    audioRef.current = new Audio(musicFile);
+    audioRef.current.loop = true; // Optional: loop the music
+    return () => {
+      // Cleanup on component unmount
+      audioRef.current.pause();
+    };
+  }, []);
 
   const handleClick = () => {
-    const audio = new Audio(musicFile);
+    if (!audioRef.current) return;
 
     if (isPlaying) {
-      audio.pause();
+      audioRef.current.pause();
       setIsPlaying(false);
     } else {
-      audio.play();
+      audioRef.current.play();
       setIsPlaying(true);
+
+      // Scroll to #wedding after play
+      const weddingSection = document.getElementById('wedding');
+      if (weddingSection) {
+        weddingSection.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
+
+  const containerVariants = {
+    animate: {
+      transition: {
+        staggerChildren: 0.3,
+      },
+    },
+  };
+
+  const childVariants = {
+    initial: { opacity: 0, scale: 0.8 },
+    animate: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: 'easeOut',
+      },
+    },
+  };
+
   return (
-    <div className="header">
+    <motion.div className="header">
       <h1>Հարսանյաց հրավեր</h1>
 
-      <div className="name">
-        <p>Poxos</p>
-        <p>petros</p>
-        <img src={endIcon} alt={endIcon} className="endIcon" />
-        <div className="music" onClick={handleClick}>
-          {isPlaying ? <PlayCircleOutlined /> : <PauseCircleOutlined />}
-          {/* <img
-            src={musicPlayIcon}
-            alt={musicPlayIcon}
-            className="musicPlayIcon"
-            onClick={handleClick}
-          /> */}
-        </div>
-      </div>
-    </div>
+      <motion.div
+        className="name"
+        variants={containerVariants}
+        initial="initial"
+        animate="animate"
+      >
+        <motion.p variants={childVariants}>Poxos</motion.p>
+        <motion.p variants={childVariants}>Petros</motion.p>
+        <motion.img
+          src={endIcon}
+          alt="end icon"
+          className="endIcon"
+          variants={childVariants}
+        />
+        <motion.div
+          className="music"
+          onClick={handleClick}
+          variants={childVariants}
+        >
+          {isPlaying ? <PauseCircleOutlined /> : <PlayCircleOutlined />}
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 };
 

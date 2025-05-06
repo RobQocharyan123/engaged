@@ -1,0 +1,112 @@
+.countdown {
+  margin-top: 250px;
+}
+
+.countdown .content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: auto;
+  gap: 80px;
+  margin-top: 20px;
+}
+.countdown h2 {
+  margin-bottom: 20px;
+  font-size: 50px;
+}
+
+.countdown .box {
+  width: calc(100% / 4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  max-width: 150px;
+}
+
+.countdown .value {
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  border-right: 3px solid #fff;
+}
+
+@media screen and (max-width: 935px) {
+  .countdown .content {
+    gap: 10px;
+  }
+  .countdown .value {
+    font-size: 30px;
+    height: 140px;
+    width: 140px;
+  }
+  .countdown .box {
+    height: 200px;
+    max-width: 200px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .countdown .content {
+    gap: 10px;
+  }
+  .countdown .value {
+    font-size: 20px;
+    height: 100px;
+    width: 100px;
+  }
+  .countdown .label {
+    font-size: 12px;
+    line-height: 27px;
+  }
+}
+
+@media screen and (max-width: 486px) {
+  .countdown .content {
+    gap: 0;
+  }
+  .countdown .value {
+    font-size: 14px;
+    height: 68px;
+    width: 68px;
+  }
+  .countdown .label {
+    font-size: 12px;
+    line-height: 27px;
+  }
+}
+
+.countdown .label {
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: lowercase;
+}
+
+.countdown h2 {
+  vertical-align: middle;
+  color: #f4f4f4;
+  font-size: 15px;
+  font-family: 'MontserratARM', Arial, sans-serif;
+  line-height: 1.7;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  background-position: center center;
+  border-color: transparent;
+  border-style: solid;
+  font-weight: 400;
+  font-size: 30px;
+  margin: 0;
+  margin-bottom: 5px;
+  text-align: center;
+}
