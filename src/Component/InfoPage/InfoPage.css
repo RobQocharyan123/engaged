@@ -1,0 +1,35 @@
+.infoPage {
+  padding-top: 150px;
+  text-align: center;
+}
+
+.infoPage .friendsText {
+  color: #f4f4f4;
+  font-size: 34px;
+  line-height: 44px;
+  font-weight: 400;
+  border-color: transparent;
+  border-style: solid;
+  font-family: 'Heghnar';
+  font-style: italic;
+}
+
+.infoPage .wishes {
+  width: 50%;
+  margin: 0 auto;
+  font-size: 20px;
+  color: #f4f4f4;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.infoPage .line {
+  position: relative;
+  width: 150px;
+  height: 1px;
+  background-color: rgb(0, 0, 0);
+  background-color: #f4f4f4;
+  opacity: 0.4;
+  margin: 0 auto;
+  margin-bottom: 0.5em;
+}
