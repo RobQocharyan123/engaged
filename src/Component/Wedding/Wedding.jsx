@@ -10,7 +10,17 @@ const Wedding = () => {
         Արագածոտնի մարզ, <br /> գ․ Սաղմոսավան
       </p>
 
-      <button>ինչպես հասնել</button>
+      <button
+        onClick={() =>
+          window.open(
+            'https://www.google.com/maps/dir/?api=1&destination=Saghmosavank',
+            '_blank',
+            'noopener,noreferrer'
+          )
+        }
+      >
+        ինչպես հասնել
+      </button>
     </div>
   );
 };

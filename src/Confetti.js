@@ -4,23 +4,26 @@ import ReactConfetti from 'react-confetti';
 const Confetti = () => {
   const [windowDimension, setWindowDimension] = useState({
     width: window.innerWidth,
-    height: window.innerHeight,
+    height: document.documentElement.scrollHeight,
   });
 
   const detectSize = () => {
     setWindowDimension({
       width: window.innerWidth,
-      height: window.innerHeight,
+      height: document.documentElement.scrollHeight,
     });
   };
 
   useEffect(() => {
+    detectSize();
     window.addEventListener('resize', detectSize);
+    window.addEventListener('scroll', detectSize);
 
     return () => {
       window.removeEventListener('resize', detectSize);
+      window.removeEventListener('scroll', detectSize);
     };
-  }, [windowDimension]);
+  }, []);
 
   return (
     <ReactConfetti

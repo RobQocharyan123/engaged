@@ -41,10 +41,9 @@ const getTimeLeft = (target) => {
   return { days, hours, minutes, seconds, isOver: false };
 };
 
-const CountDown = () => {
+const CountDown = ({ showCelebration, setShowCelebration }) => {
   const countdownTarget = getOrCreateCountdownTarget();
   const [timeLeft, setTimeLeft] = useState(() => getTimeLeft(countdownTarget));
-  const [showCelebration, setShowCelebration] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -93,8 +92,6 @@ const CountDown = () => {
           );
         })}
       </div>
-
-      {showCelebration && <Confetti />}
     </div>
   );
 };

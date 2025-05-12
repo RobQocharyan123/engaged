@@ -43,7 +43,7 @@
   text-align: center;
 }
 
-.wedding .map-button {
+.wedding button {
   width: 186px;
   height: 40px;
   border-radius: 35px;
@@ -56,6 +56,6 @@
   background-color: rgba(128, 128, 128, 0.3);
 }
 
-.wedding .map-button:hover {
+.wedding button:hover {
   background-color: rgba(128, 128, 128, 0.5);
 }
