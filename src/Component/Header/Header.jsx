@@ -1,7 +1,7 @@
 import './Header.css';
 
 import endIcon from '../../Assets/header/end-icon.svg';
-import musicFile from '../../Assets/music.mp3';
+import musicFile from '../../Assets/music.mp4';
 import { useRef, useState, useEffect } from 'react';
 import { PauseCircleOutlined, PlayCircleOutlined } from '@ant-design/icons';
 import { motion } from 'framer-motion';
