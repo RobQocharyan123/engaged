@@ -55,7 +55,7 @@ const ContactUs = () => {
       <p className="contactUsSmallText">
         Կսպասենք Ձեր պատասխանին մինչև 01.06.2025
       </p>
-      <form onSubmit={handleSubmit} style={{ maxWidth: 400, margin: '0 auto' }}>
+      <form onSubmit={handleSubmit} style={{ margin: '0 auto' }}>
         <div className="firstRadio">
           <label>
             <input
@@ -78,9 +78,7 @@ const ContactUs = () => {
             Փեսայի կողմ
           </label>
           {errors.firstOption && (
-            <div style={{ color: 'red', marginLeft: '10px' }}>
-              {errors.firstOption}
-            </div>
+            <div className="error">{errors.firstOption}</div>
           )}
         </div>
 
@@ -90,11 +88,7 @@ const ContactUs = () => {
             onChange={(e) => setName(e.target.value)}
             placeholder="Անուն-Ազգանուն"
           />
-          {errors.name && (
-            <div style={{ color: 'red', marginLeft: '10px' }}>
-              {errors.name}
-            </div>
-          )}
+          {errors.name && <div className="error">{errors.name}</div>}
         </div>
         <div className="firstRadio">
           <label>
@@ -118,9 +112,7 @@ const ContactUs = () => {
             Չենք կարող գալ :(
           </label>
           {errors.secondOption && (
-            <div style={{ color: 'red', marginLeft: '10px' }}>
-              {errors.secondOption}
-            </div>
+            <div className="error">{errors.secondOption}</div>
           )}
         </div>
 
@@ -134,11 +126,7 @@ const ContactUs = () => {
               onChange={(e) => setNumber(e.target.value)}
               placeholder="Հյուրերի թիվ"
             />
-            {errors.number && (
-              <div style={{ color: 'red', marginLeft: '10px' }}>
-                {errors.number}
-              </div>
-            )}
+            {errors.number && <div className="error">{errors.number}</div>}
           </div>
         )}
         {Object.keys(errors).length > 0 && (

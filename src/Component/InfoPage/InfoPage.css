@@ -33,3 +33,9 @@
   margin: 0 auto;
   margin-bottom: 0.5em;
 }
+
+@media screen and (max-width: 400px) {
+  .infoPage .wishes {
+    width: 80%;
+  }
+}

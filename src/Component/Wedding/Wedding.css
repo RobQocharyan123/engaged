@@ -59,3 +59,10 @@
 .wedding .map-button:hover {
   background-color: rgba(128, 128, 128, 0.5);
 }
+
+@media screen and (max-width: 400px) {
+  .wedding .postProduction,
+  .wedding .place {
+    font-size: 18px;
+  }
+}

@@ -40,6 +40,32 @@
   border-right: 3px solid #fff;
 }
 
+.countdown .label {
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: lowercase;
+}
+
+.countdown h2 {
+  vertical-align: middle;
+  color: #f4f4f4;
+  font-size: 15px;
+  font-family: 'MontserratARM', Arial, sans-serif;
+  line-height: 1.7;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  background-position: center center;
+  border-color: transparent;
+  border-style: solid;
+  font-weight: 400;
+  font-size: 30px;
+  margin: 0;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
 @media screen and (max-width: 935px) {
   .countdown .content {
     gap: 10px;
@@ -83,30 +109,9 @@
     font-size: 12px;
     line-height: 27px;
   }
-}
 
-.countdown .label {
-  font-size: 20px;
-  line-height: 25px;
-  font-weight: 400;
-  letter-spacing: 1px;
-  text-transform: lowercase;
-}
-
-.countdown h2 {
-  vertical-align: middle;
-  color: #f4f4f4;
-  font-size: 15px;
-  font-family: 'MontserratARM', Arial, sans-serif;
-  line-height: 1.7;
-  font-weight: 300;
-  letter-spacing: 1.5px;
-  background-position: center center;
-  border-color: transparent;
-  border-style: solid;
-  font-weight: 400;
-  font-size: 30px;
-  margin: 0;
-  margin-bottom: 5px;
-  text-align: center;
+  .countdown h2 {
+    font-size: 25px;
+    line-height: 30px;
+  }
 }

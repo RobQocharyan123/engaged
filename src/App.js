@@ -14,10 +14,9 @@ function App() {
   const [showCelebration, setShowCelebration] = useState(false);
   return (
     <>
-      {showCelebration && <Confetti />}
-
       <Background />
       <div className="App">
+        {showCelebration && <Confetti />}
         <Header />
         <CountDown
           showCelebration={showCelebration}

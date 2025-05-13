@@ -17,3 +17,9 @@
   font-weight: 400;
   text-align: center;
 }
+
+@media screen and (max-width: 400px) {
+  .footer img {
+    width: 300px;
+  }
+}

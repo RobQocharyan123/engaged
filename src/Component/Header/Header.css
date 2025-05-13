@@ -11,8 +11,8 @@
 .header h1 {
   color: #fff;
   font-size: 25px;
+  line-height: 30px;
   font-family: 'MontserratARM', Arial, sans-serif;
-  line-height: 1.55;
   font-weight: 700;
   text-transform: uppercase;
   opacity: 0.8;
@@ -57,4 +57,11 @@
   cursor: pointer;
   z-index: 2;
   color: #fff;
+}
+
+@media screen and (max-width: 400px) {
+  .header h1 {
+    font-size: 20px;
+    line-height: 25px;
+  }
 }
