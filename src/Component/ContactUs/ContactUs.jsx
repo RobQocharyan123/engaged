@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './ContactUs.css';
+import { toast } from 'react-toastify';
 
 const ContactUs = () => {
   const [firstOption, setFirstOption] = useState('');
@@ -39,9 +40,15 @@ const ContactUs = () => {
         firstOption,
         name,
         secondOption,
-        number: secondOption === 'a' ? parseInt(number) : null,
+        number: secondOption === 'yes' ? parseInt(number) : null,
       };
 
+      toast.success('Հաստատվեց!');
+      setErrors({});
+      setNumber('');
+      setFirstOption('');
+      setName('');
+      setSecondOption('');
       console.log('Submitted Data:', formData);
     }
   };
@@ -53,7 +60,7 @@ const ContactUs = () => {
         եթե նախապես հաստատեք Ձեր <br /> ներկայությունը
       </div>
       <p className="contactUsSmallText">
-        Կսպասենք Ձեր պատասխանին մինչև 01.06.2025
+        Կսպասենք Ձեր պատասխանին մինչև 18.06.2026
       </p>
       <form onSubmit={handleSubmit} style={{ margin: '0 auto' }}>
         <div className="firstRadio">

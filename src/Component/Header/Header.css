@@ -43,9 +43,10 @@
 .header .name p {
   color: #f4f4f4;
   font-size: 35px;
-  font-family: 'Dancing Script', cursive;
+  font-family: 'poqrik', Arial, sans-serif;
   font-weight: 700;
   margin: 0;
+  letter-spacing: 5px;
 }
 
 .header .music {

@@ -9,7 +9,8 @@ import InfoPage from './Component/InfoPage/InfoPage';
 import Restaurant from './Component/Restaurant/Restaurant';
 import Wedding from './Component/Wedding/Wedding';
 import Confetti from './Confetti';
-
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 function App() {
   const [showCelebration, setShowCelebration] = useState(false);
   return (
@@ -28,6 +29,7 @@ function App() {
         <ContactUs />
         <Footer />
       </div>
+      <ToastContainer />
     </>
   );
 }

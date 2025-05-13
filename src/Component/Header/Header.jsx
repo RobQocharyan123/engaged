@@ -68,8 +68,8 @@ const Header = () => {
         initial="initial"
         animate="animate"
       >
-        <motion.p variants={childVariants}>Poxos</motion.p>
-        <motion.p variants={childVariants}>Petros</motion.p>
+        <motion.p variants={childVariants}>Հակոբ</motion.p>
+        <motion.p variants={childVariants}>Լիլիթ</motion.p>
         <motion.img
           src={endIcon}
           alt="end icon"

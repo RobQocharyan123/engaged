@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './CountDown.css';
 
-const COUNTDOWN_DURATION = 100000000;
+const COUNTDOWN_DURATION = 31536000000;
 
 const getOrCreateCountdownTarget = () => {
   const savedTarget = localStorage.getItem('countdownTarget');

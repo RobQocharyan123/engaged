@@ -1,8 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 @font-face {
-  font-family: 'Heghnar';
-  src: url('http://localhost:300//fonts/Heghnar.ttf') format('truetype');
+  font-family: 'Vrdznagir';
+  src: url('../public/Vrdznagir.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'poqrik';
+  src: url('../public/poqrik.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
