@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './CountDown.css';
 
 const COUNTDOWN_DURATION = 31536000000;
@@ -56,7 +56,7 @@ const CountDown = ({ showCelebration, setShowCelebration }) => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [countdownTarget, showCelebration]);
+  }, [countdownTarget, setShowCelebration, showCelebration]);
 
   return (
     <div className="countdown">

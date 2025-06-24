@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './ContactUs.css';
 import { toast } from 'react-toastify';
+import { postRegisterData } from '../../services/reigisterService';
 
 const ContactUs = () => {
   const [firstOption, setFirstOption] = useState('');
@@ -10,7 +11,7 @@ const ContactUs = () => {
 
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
 
@@ -42,14 +43,16 @@ const ContactUs = () => {
         secondOption,
         number: secondOption === 'yes' ? parseInt(number) : null,
       };
-
-      toast.success('Հաստատվեց!');
-      setErrors({});
-      setNumber('');
-      setFirstOption('');
-      setName('');
-      setSecondOption('');
-      console.log('Submitted Data:', formData);
+      try {
+        const res = await postRegisterData(formData);
+        toast.success('Հաստատվեց!');
+        setErrors({});
+        setNumber('');
+        setFirstOption('');
+        setName('');
+        setSecondOption('');
+        return res;
+      } catch (err) {}
     }
   };
 
