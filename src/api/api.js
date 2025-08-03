@@ -1,5 +1,5 @@
 import axios from 'axios';
-const getBaseURL = () => process.env.REACT_APP_URL;
+const getBaseURL = () => process.env.REACT_APP_URL || "https://engaged-app-backend.onrender.com";
 
 const instance = axios.create({
   baseURL: getBaseURL(),
