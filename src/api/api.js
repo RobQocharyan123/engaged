@@ -1,5 +1,6 @@
-import axios from 'axios';
-const getBaseURL = () => process.env.REACT_APP_URL;
+import axios from "axios";
+const getBaseURL = () =>
+  process.env.REACT_APP_URL || "https://engaged-app-backend.onrender.com/api";
 
 const instance = axios.create({
   baseURL: getBaseURL(),
@@ -7,7 +8,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   function (config) {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
 
     return token
       ? {
