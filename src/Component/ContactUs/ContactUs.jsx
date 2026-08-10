@@ -77,7 +77,7 @@ const ContactUs = () => {
         եթե նախապես հաստատեք Ձեր <br /> ներկայությունը
       </h2>
       <p className="contactUsSmallText">
-        Կսպասենք Ձեր պատասխանին մինչև 18.06.2026
+        Կսպասենք Ձեր պատասխանին մինչև 20.10.2026
       </p>
       <form onSubmit={handleSubmit} noValidate>
         <fieldset className="firstRadio">

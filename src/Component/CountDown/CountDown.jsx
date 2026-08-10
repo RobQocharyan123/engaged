@@ -3,6 +3,7 @@ import './CountDown.css';
 import { getTimeToENdEngaged } from '../../services/reigisterService';
 
 const RESYNC_INTERVAL_MS = 30000;
+const WEDDING_DATE = Date.parse('2026-10-20T14:30:00+04:00');
 
 const EMPTY_TIME = {
   days: 0,
@@ -36,18 +37,9 @@ const getTimeLeft = (milliseconds) => {
 };
 
 const parseCountdown = (response, receivedAt) => {
-  const targetAt = Date.parse(response?.target_at);
   const serverTime = Date.parse(response?.server_time);
-  const legacyRemaining = Number(response?.remaining_time_milliseconds);
-
-  let remaining;
-  if (Number.isFinite(targetAt) && Number.isFinite(serverTime)) {
-    remaining = targetAt - serverTime;
-  } else if (Number.isFinite(legacyRemaining) && legacyRemaining >= 0) {
-    remaining = legacyRemaining;
-  } else {
-    throw new Error('Invalid countdown response');
-  }
+  const currentTime = Number.isFinite(serverTime) ? serverTime : receivedAt;
+  const remaining = WEDDING_DATE - currentTime;
 
   return { deadline: receivedAt + Math.max(0, remaining) };
 };

@@ -28,8 +28,24 @@ function App() {
     audio.preload = 'metadata';
     audioRef.current = audio;
 
-    return () => {
+    const pauseMusic = () => {
       audio.pause();
+      setIsMusicPlaying(false);
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') pauseMusic();
+    };
+
+    window.addEventListener('blur', pauseMusic);
+    window.addEventListener('pagehide', pauseMusic);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      pauseMusic();
+      window.removeEventListener('blur', pauseMusic);
+      window.removeEventListener('pagehide', pauseMusic);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       audioRef.current = null;
     };
   }, []);

@@ -13,7 +13,7 @@ const InfoPage = () => {
       </p>
       <p className="wishes">Հրավիրում ենք Ձեզ մեր հարսանիքին։</p>
       <p className="friendsText">
-        18 Հուլիսի <br />
+        20 Հոկտեմբերի <br />
         2026
       </p>
       <div className="line"></div>
