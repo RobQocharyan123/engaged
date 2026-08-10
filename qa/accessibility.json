@@ -1,0 +1,78 @@
+{
+  "openButton": {
+    "nodeId": "42",
+    "ignored": false,
+    "role": {
+      "type": "role",
+      "value": "button"
+    },
+    "chromeRole": {
+      "type": "internalRole",
+      "value": 9
+    },
+    "name": {
+      "type": "computedString",
+      "value": "Բացել Հակոբի և Լիլիթի հարսանեկան հրավերը",
+      "sources": [
+        {
+          "type": "relatedElement",
+          "attribute": "aria-labelledby"
+        },
+        {
+          "type": "attribute",
+          "value": {
+            "type": "computedString",
+            "value": "Բացել Հակոբի և Լիլիթի հարսանեկան հրավերը"
+          },
+          "attribute": "aria-label",
+          "attributeValue": {
+            "type": "string",
+            "value": "Բացել Հակոբի և Լիլիթի հարսանեկան հրավերը"
+          }
+        },
+        {
+          "type": "relatedElement",
+          "superseded": true,
+          "nativeSource": "label"
+        },
+        {
+          "type": "contents",
+          "superseded": true
+        },
+        {
+          "type": "attribute",
+          "attribute": "title",
+          "superseded": true
+        }
+      ]
+    },
+    "properties": [
+      {
+        "name": "invalid",
+        "value": {
+          "type": "token",
+          "value": "false"
+        }
+      },
+      {
+        "name": "focusable",
+        "value": {
+          "type": "booleanOrUndefined",
+          "value": true
+        }
+      }
+    ],
+    "parentId": "39",
+    "childIds": [],
+    "backendDOMNodeId": 42
+  },
+  "desktopState": {
+    "coverRemoved": true,
+    "contentVisible": true
+  },
+  "countdown": {
+    "before": "58",
+    "after": "57"
+  },
+  "celebrationVisible": true
+}

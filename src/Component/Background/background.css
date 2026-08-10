@@ -1,14 +1,61 @@
 .background {
   position: fixed;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
+  inset: 0;
   z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #171512;
 }
 
-.background img {
+.background__image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: contain;
+  object-position: center;
+  filter: saturate(0.94) contrast(1.03);
+  will-change: opacity, transform;
+}
+
+.background__image--backdrop {
+  inset: -5%;
+  width: 110%;
+  height: 110%;
   object-fit: cover;
+  filter: blur(24px) saturate(0.72) brightness(0.58);
+  opacity: 0.72;
+}
+
+.background__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(12, 14, 12, 0.3), rgba(12, 14, 12, 0.2) 45%, rgba(12, 14, 12, 0.42)),
+    rgba(13, 15, 13, 0.12);
+}
+
+@media (max-width: 640px) {
+  .background__image {
+    object-position: center;
+  }
+
+  .background__image--backdrop {
+    inset: -7%;
+    width: 114%;
+    height: 114%;
+    filter: blur(18px) saturate(0.76) brightness(0.62);
+  }
+
+  .background__veil {
+    background:
+      linear-gradient(180deg, rgba(12, 14, 12, 0.2), rgba(12, 14, 12, 0.12) 45%, rgba(12, 14, 12, 0.36)),
+      rgba(13, 15, 13, 0.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .background__image {
+    will-change: auto;
+  }
 }

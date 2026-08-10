@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/invite/:path*",
+      "destination": "/index.html"
+    }
+  ]
+}

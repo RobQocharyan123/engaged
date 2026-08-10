@@ -1,81 +1,96 @@
 import { useState } from 'react';
 import './ContactUs.css';
 import { toast } from 'react-toastify';
-import { postRegisterData } from '../../services/reigisterService';
+import {
+  getRegisterErrorMessage,
+  postRegisterData,
+} from '../../services/reigisterService';
 
 const ContactUs = () => {
   const [firstOption, setFirstOption] = useState('');
   const [name, setName] = useState('');
   const [secondOption, setSecondOption] = useState('');
   const [number, setNumber] = useState('');
-
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [serverError, setServerError] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (isSubmitting) return;
+
     const newErrors = {};
+    const normalizedName = name.trim().replace(/\s+/g, ' ');
 
     if (!firstOption) {
-      newErrors.firstOption = 'Նշեք թե ում կողմից եք հրավիրված';
+      newErrors.firstOption = 'Նշեք, թե ում կողմից եք հրավիրված';
     }
 
-    if (!name.trim()) {
-      newErrors.name = 'Անուն-Ազգանուն դաշտը պարտադիր է';
+    if (normalizedName.length < 2) {
+      newErrors.name = 'Անուն-ազգանունը պետք է պարունակի առնվազն 2 նիշ';
     }
 
     if (!secondOption) {
-      newErrors.secondOption = 'Նշեք գալու եք թե ոչ';
+      newErrors.secondOption = 'Նշեք՝ գալու եք, թե ոչ';
     }
 
-    if (secondOption === 'yes') {
-      const num = parseInt(number);
-      if (!num || num <= 0 || !Number.isInteger(num)) {
-        newErrors.number = 'Հյուրերի թիվը պարտադիր է';
-      }
+    const guestCount = Number(number);
+    if (
+      secondOption === 'yes' &&
+      (!Number.isInteger(guestCount) || guestCount < 1 || guestCount > 20)
+    ) {
+      newErrors.number = 'Նշեք հյուրերի ճիշտ թիվը՝ 1-ից 20';
     }
 
     setErrors(newErrors);
+    setServerError('');
 
-    if (Object.keys(newErrors).length === 0) {
-      const formData = {
+    if (Object.keys(newErrors).length > 0) return;
+
+    setIsSubmitting(true);
+    try {
+      await postRegisterData({
         firstOption,
-        name,
+        name: normalizedName,
         secondOption,
-        number: secondOption === 'yes' ? parseInt(number) : null,
-      };
-      try {
-        const res = await postRegisterData(formData);
-        toast.success('Հաստատվեց!');
-        setErrors({});
-        setNumber('');
-        setFirstOption('');
-        setName('');
-        setSecondOption('');
-        return res;
-      } catch (err) {}
+        number: secondOption === 'yes' ? guestCount : null,
+      });
+      toast.success('Ձեր պատասխանը հաստատվեց');
+      setErrors({});
+      setNumber('');
+      setFirstOption('');
+      setName('');
+      setSecondOption('');
+    } catch (error) {
+      const message = getRegisterErrorMessage(error);
+      setServerError(message);
+      toast.error(message);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="contactUs">
-      <div className="contactUsText">
+    <section className="contactUs" aria-labelledby="rsvp-title">
+      <h2 className="contactUsText" id="rsvp-title">
         Շնորհակալ կլինենք, <br />
         եթե նախապես հաստատեք Ձեր <br /> ներկայությունը
-      </div>
+      </h2>
       <p className="contactUsSmallText">
         Կսպասենք Ձեր պատասխանին մինչև 18.06.2026
       </p>
-      <form onSubmit={handleSubmit} style={{ margin: '0 auto' }}>
-        <div className="firstRadio">
+      <form onSubmit={handleSubmit} noValidate>
+        <fieldset className="firstRadio">
+          <legend className="sideQuestion">Ում կողմից եք գալիս</legend>
           <label>
             <input
               type="radio"
               name="firstOption"
               value="girl"
               checked={firstOption === 'girl'}
-              onChange={(e) => setFirstOption(e.target.value)}
-            />{' '}
-            Հարսի կողմ
+              onChange={(event) => setFirstOption(event.target.value)}
+            />
+            Lilit
           </label>
           <label>
             <input
@@ -83,32 +98,44 @@ const ContactUs = () => {
               name="firstOption"
               value="boy"
               checked={firstOption === 'boy'}
-              onChange={(e) => setFirstOption(e.target.value)}
-            />{' '}
-            Փեսայի կողմ
+              onChange={(event) => setFirstOption(event.target.value)}
+            />
+            Hakob
           </label>
           {errors.firstOption && (
-            <div className="error">{errors.firstOption}</div>
+            <span className="error" role="alert">{errors.firstOption}</span>
+          )}
+        </fieldset>
+
+        <div className="name">
+          <label className="srOnly" htmlFor="guest-name">Անուն ազգանուն</label>
+          <input
+            id="guest-name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            placeholder="Անուն-ազգանուն"
+            autoComplete="name"
+            maxLength="80"
+            aria-invalid={Boolean(errors.name)}
+            aria-describedby={errors.name ? 'guest-name-error' : undefined}
+          />
+          {errors.name && (
+            <span className="error" id="guest-name-error" role="alert">
+              {errors.name}
+            </span>
           )}
         </div>
 
-        <div className="name">
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Անուն-Ազգանուն"
-          />
-          {errors.name && <div className="error">{errors.name}</div>}
-        </div>
-        <div className="firstRadio">
+        <fieldset className="firstRadio">
+          <legend className="srOnly">Հաստատեք ներկայությունը</legend>
           <label>
             <input
               type="radio"
               name="secondOption"
               value="yes"
               checked={secondOption === 'yes'}
-              onChange={(e) => setSecondOption(e.target.value)}
-            />{' '}
+              onChange={(event) => setSecondOption(event.target.value)}
+            />
             Մենք կգանք
           </label>
           <label>
@@ -117,39 +144,52 @@ const ContactUs = () => {
               name="secondOption"
               value="no"
               checked={secondOption === 'no'}
-              onChange={(e) => setSecondOption(e.target.value)}
-            />{' '}
-            Չենք կարող գալ :(
+              onChange={(event) => setSecondOption(event.target.value)}
+            />
+            Չենք կարող գալ
           </label>
           {errors.secondOption && (
-            <div className="error">{errors.secondOption}</div>
+            <span className="error" role="alert">{errors.secondOption}</span>
           )}
-        </div>
+        </fieldset>
 
         {secondOption === 'yes' && (
           <div className="name">
+            <label className="srOnly" htmlFor="guest-count">Հյուրերի թիվ</label>
             <input
+              id="guest-count"
               type="number"
               value={number}
               min="1"
+              max="20"
               step="1"
-              onChange={(e) => setNumber(e.target.value)}
+              inputMode="numeric"
+              onChange={(event) => setNumber(event.target.value)}
               placeholder="Հյուրերի թիվ"
+              aria-invalid={Boolean(errors.number)}
+              aria-describedby={errors.number ? 'guest-count-error' : undefined}
             />
-            {errors.number && <div className="error">{errors.number}</div>}
+            {errors.number && (
+              <span className="error" id="guest-count-error" role="alert">
+                {errors.number}
+              </span>
+            )}
           </div>
         )}
+
         {Object.keys(errors).length > 0 && (
-          <div className="require">
-            Please fill in all required fields | Пожалуйста, заполните все
-            обязательные поля | Խնդրում ենք լրացնել բոլոր պահանջվող դաշտերը
+          <div className="require" role="alert">
+            Խնդրում ենք լրացնել բոլոր պարտադիր դաշտերը
           </div>
         )}
-        <button type="submit" style={{ marginTop: 20 }}>
-          Ուղարկել
+        {serverError && (
+          <div className="require" role="alert">{serverError}</div>
+        )}
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? 'Ուղարկվում է…' : 'Ուղարկել'}
         </button>
       </form>
-    </div>
+    </section>
   );
 };
 

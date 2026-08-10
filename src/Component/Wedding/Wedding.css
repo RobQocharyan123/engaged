@@ -26,7 +26,7 @@
   font-size: 20px;
   color: #f4f4f4;
   font-weight: 300;
-  font-family: 'MontserratARM';
+  font-family: 'Noto Serif Armenian', Arial, sans-serif;
   text-transform: uppercase;
 }
 
@@ -34,7 +34,7 @@
   font-size: 20px;
   color: #f4f4f4;
   font-weight: 700;
-  font-family: 'MontserratARM';
+  font-family: 'Noto Serif Armenian', Arial, sans-serif;
 }
 
 .wedding .adress {
@@ -58,6 +58,11 @@
 
 .wedding .map-button:hover {
   background-color: rgba(128, 128, 128, 0.5);
+}
+
+.wedding .map-button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
 }
 
 @media screen and (max-width: 400px) {

@@ -12,7 +12,7 @@
   color: #fff;
   font-size: 25px;
   line-height: 30px;
-  font-family: 'MontserratARM', Arial, sans-serif;
+  font-family: 'Noto Serif Armenian', Arial, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   opacity: 0.8;
@@ -52,12 +52,23 @@
 .header .music {
   position: absolute;
   top: 150px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: 50%;
 }
 .header .music svg {
   font-size: 50px;
   cursor: pointer;
   z-index: 2;
   color: #fff;
+}
+
+.header .music:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 5px;
 }
 
 @media screen and (max-width: 400px) {

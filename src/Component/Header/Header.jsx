@@ -1,43 +1,10 @@
 import './Header.css';
 
 import endIcon from '../../Assets/header/end-icon.svg';
-import musicFile from '../../Assets/music.mp4';
-import { useRef, useState, useEffect } from 'react';
 import { PauseCircleOutlined, PlayCircleOutlined } from '@ant-design/icons';
 import { motion } from 'framer-motion';
 
-const Header = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(null);
-
-  useEffect(() => {
-    // Create the Audio object only once
-    audioRef.current = new Audio(musicFile);
-    audioRef.current.loop = true; // Optional: loop the music
-    return () => {
-      // Cleanup on component unmount
-      audioRef.current.pause();
-    };
-  }, []);
-
-  const handleClick = () => {
-    if (!audioRef.current) return;
-
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play();
-      setIsPlaying(true);
-
-      // Scroll to #wedding after play
-      const weddingSection = document.getElementById('wedding');
-      if (weddingSection) {
-        weddingSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
-
+const Header = ({ isPlaying, onToggleMusic }) => {
   const containerVariants = {
     animate: {
       transition: {
@@ -59,7 +26,7 @@ const Header = () => {
   };
 
   return (
-    <motion.div className="header">
+    <motion.header className="header">
       <h1>Հարսանյաց հրավեր</h1>
 
       <motion.div
@@ -76,15 +43,18 @@ const Header = () => {
           className="endIcon"
           variants={childVariants}
         />
-        <motion.div
+        <motion.button
+          type="button"
           className="music"
-          onClick={handleClick}
+          onClick={onToggleMusic}
           variants={childVariants}
+          aria-label={isPlaying ? 'Դադարեցնել երաժշտությունը' : 'Միացնել երաժշտությունը'}
+          aria-pressed={isPlaying}
         >
           {isPlaying ? <PauseCircleOutlined /> : <PlayCircleOutlined />}
-        </motion.div>
+        </motion.button>
       </motion.div>
-    </motion.div>
+    </motion.header>
   );
 };
 

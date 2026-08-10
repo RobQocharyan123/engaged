@@ -2,15 +2,17 @@ import './Wedding.css';
 
 const Wedding = () => {
   return (
-    <div className="wedding">
+    <section className="wedding" aria-label="Պսակադրություն">
       <p className="time">14 : 30</p>
-      <p className="postProduction">Պսաակդրություն</p>
+      <p className="postProduction">Պսակադրություն</p>
       <p className="place">Սաղմոսավանք</p>
       <p className="adress">
         Արագածոտնի մարզ, <br /> գ․ Սաղմոսավան
       </p>
 
       <button
+        type="button"
+        className="map-button"
         onClick={() =>
           window.open(
             'https://www.google.com/maps/dir/?api=1&destination=Saghmosavank',
@@ -21,7 +23,7 @@ const Wedding = () => {
       >
         ինչպես հասնել
       </button>
-    </div>
+    </section>
   );
 };
 

@@ -1,0 +1,336 @@
+.openingCover {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  overflow: hidden;
+  background: #17130f;
+  color: #7c5a28;
+  opacity: 1;
+  transition: opacity 350ms ease 2050ms;
+  perspective: 1400px;
+}
+
+.openingCover__picture,
+.openingCover__art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.openingCover__flap {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  clip-path: polygon(17% 36%, 83% 36%, 50% 61%);
+  transform-origin: 50% 36%;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  pointer-events: none;
+  transition: transform 760ms cubic-bezier(0.2, 0.72, 0.2, 1);
+}
+
+.openingCover__flap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.openingCover__card {
+  position: absolute;
+  z-index: 1;
+  top: 39%;
+  left: 50%;
+  display: flex;
+  width: min(46vw, 610px);
+  height: min(36vh, 350px);
+  transform: translate(-50%, 24%);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  border: 1px solid rgba(159, 119, 62, 0.28);
+  background: linear-gradient(145deg, #fffdf7, #f1e5cb);
+  color: #8b642e;
+  box-shadow: 0 20px 60px rgba(22, 15, 8, 0.32);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1) 360ms,
+    opacity 300ms ease 280ms;
+}
+
+.openingCover__cardMonogram {
+  font-family: 'Vrdznagir', 'Noto Serif Armenian', Georgia, serif;
+  font-size: clamp(34px, 4vw, 58px);
+}
+
+.openingCover__cardText {
+  font-family: 'Noto Serif Armenian', Georgia, serif;
+  font-size: clamp(13px, 1.4vw, 20px);
+  letter-spacing: 0.08em;
+}
+
+.openingCover__glow {
+  position: absolute;
+  z-index: 3;
+  top: 59%;
+  left: 50%;
+  width: 90px;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%) scale(0.3);
+  border-radius: 50%;
+  background: rgba(255, 231, 176, 0.65);
+  filter: blur(22px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.openingCover__art {
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 1500ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 350ms ease 2000ms;
+}
+
+.openingCover__open {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  z-index: 4;
+}
+
+.openingCover__open:disabled {
+  cursor: wait;
+}
+
+.openingCover__copy {
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  display: flex;
+  width: min(54vw, 720px);
+  transform: translateX(-50%);
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  text-align: center;
+  transition: opacity 350ms ease, transform 700ms ease;
+}
+
+.openingCover__names {
+  font-family: 'Noto Serif Armenian', 'Vrdznagir', Georgia, serif;
+  font-size: clamp(27px, 2.6vw, 41px);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  line-height: 1.35;
+  text-shadow: 0 2px 18px rgba(255, 239, 202, 0.22);
+}
+
+.openingCover__ornament {
+  display: flex;
+  width: min(280px, 34vw);
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #a47a3c;
+}
+
+.openingCover__ornament span {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, currentColor);
+}
+
+.openingCover__ornament span:last-child {
+  background: linear-gradient(90deg, currentColor, transparent);
+}
+
+.openingCover__ornament b {
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.openingCover__title {
+  padding-top: 2px;
+  font-family: 'Heghnar', 'Noto Serif Armenian', Georgia, serif;
+  font-size: clamp(23px, 2.25vw, 36px);
+  font-weight: 400;
+  letter-spacing: 0.13em;
+  line-height: 1.35;
+  text-shadow: 0 2px 20px rgba(255, 236, 193, 0.28);
+}
+
+.openingCover__sealFocus {
+  position: absolute;
+  top: 59%;
+  left: 50%;
+  width: clamp(92px, 8.5vw, 132px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  transition: outline-color 180ms ease, transform 180ms ease;
+}
+
+.openingCover__open:hover .openingCover__sealFocus {
+  transform: translate(-50%, -50%) scale(1.06);
+  outline: 2px solid rgba(244, 213, 154, 0.78);
+  outline-offset: 7px;
+}
+
+.openingCover__open:focus-visible {
+  outline: none;
+}
+
+.openingCover__open:focus-visible .openingCover__sealFocus {
+  outline: 3px solid #fff1ce;
+  outline-offset: 8px;
+}
+
+.openingCover__cta {
+  position: absolute;
+  top: 81%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 130px;
+  transform: translateX(-50%);
+  color: #d8b878;
+  font-family: 'Noto Serif Armenian', Georgia, serif;
+  font-size: clamp(18px, 1.8vw, 27px);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  line-height: 1.5;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.65);
+  transition: color 180ms ease, opacity 320ms ease, transform 700ms ease;
+}
+
+.openingCover__cta img {
+  display: block;
+  width: 300px;
+  height: auto;
+  margin-top: -62px;
+}
+
+.openingCover__open:hover .openingCover__cta {
+  color: #f2d89d;
+}
+
+.openingCover--opening {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.openingCover--opening .openingCover__flap {
+  transform: rotateX(-178deg);
+}
+
+.openingCover--opening .openingCover__card {
+  transform: translate(-50%, -46%);
+  opacity: 1;
+}
+
+.openingCover--opening .openingCover__glow {
+  animation: openingCoverGlow 700ms ease-out forwards;
+}
+
+.openingCover--opening .openingCover__art {
+  opacity: 0;
+  transform: scale(1.08);
+}
+
+.openingCover--opening .openingCover__copy {
+  opacity: 0;
+  transform: translate(-50%, -18px);
+}
+
+.openingCover--opening .openingCover__cta {
+  opacity: 0;
+  transform: translate(-50%, 18px);
+}
+
+@media (max-width: 640px) {
+  .openingCover__flap {
+    clip-path: polygon(8% 36%, 92% 36%, 50% 56%);
+    transform-origin: 50% 36%;
+  }
+
+  .openingCover__card {
+    top: 38%;
+    width: 72vw;
+    height: min(30vh, 260px);
+  }
+
+  .openingCover__copy {
+    top: 34%;
+    width: 74vw;
+    gap: 7px;
+  }
+
+  .openingCover__names {
+    font-size: clamp(21px, 6.4vw, 29px);
+    letter-spacing: 0.08em;
+  }
+
+  .openingCover__title {
+    font-size: clamp(19px, 5.6vw, 25px);
+    letter-spacing: 0.09em;
+  }
+
+  .openingCover__ornament {
+    width: min(220px, 58vw);
+    gap: 8px;
+  }
+
+  .openingCover__ornament b {
+    font-size: 17px;
+  }
+
+  .openingCover__sealFocus {
+    top: 54.2%;
+    width: clamp(76px, 22vw, 96px);
+  }
+
+  .openingCover__cta {
+    top: 69%;
+    font-size: clamp(17px, 5vw, 22px);
+  }
+
+  .openingCover__cta img {
+    width: 210px;
+    margin-top: -43px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .openingCover,
+  .openingCover__art,
+  .openingCover__copy,
+  .openingCover__cta,
+  .openingCover__sealFocus,
+  .openingCover__flap,
+  .openingCover__card {
+    transition-duration: 1ms;
+  }
+
+  .openingCover__glow {
+    display: none;
+  }
+}
+
+@keyframes openingCoverGlow {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); }
+  35% { opacity: 0.85; }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(3.2); }
+}

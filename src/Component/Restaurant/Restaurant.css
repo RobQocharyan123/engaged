@@ -1,4 +1,4 @@
-.wedding {
+.restaurant {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -8,10 +8,10 @@
   margin-top: 50px;
 }
 
-.wedding p {
+.restaurant p {
   margin: 0;
 }
-.wedding .time {
+.restaurant .time {
   color: #f4f4f4;
   font-size: 40px;
   line-height: 44px;
@@ -22,29 +22,29 @@
   font-style: italic;
 }
 
-.wedding .postProduction {
+.restaurant .postProduction {
   font-size: 20px;
   color: #f4f4f4;
   font-weight: 300;
-  font-family: 'MontserratARM';
+  font-family: 'Noto Serif Armenian', Arial, sans-serif;
   text-transform: uppercase;
 }
 
-.wedding .place {
+.restaurant .place {
   font-size: 20px;
   color: #f4f4f4;
   font-weight: 700;
-  font-family: 'MontserratARM';
+  font-family: 'Noto Serif Armenian', Arial, sans-serif;
   text-align: center;
 }
 
-.wedding .adress {
+.restaurant .adress {
   font-size: 16px;
   color: #f4f4f4;
   text-align: center;
 }
 
-.wedding button {
+.restaurant button {
   width: 186px;
   height: 40px;
   border-radius: 35px;
@@ -57,6 +57,11 @@
   background-color: rgba(128, 128, 128, 0.3);
 }
 
-.wedding button:hover {
+.restaurant button:hover {
   background-color: rgba(128, 128, 128, 0.5);
+}
+
+.restaurant button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
 }
