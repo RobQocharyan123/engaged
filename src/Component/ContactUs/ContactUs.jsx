@@ -90,7 +90,7 @@ const ContactUs = () => {
               checked={firstOption === 'girl'}
               onChange={(event) => setFirstOption(event.target.value)}
             />
-            Lilit
+            Լիլիթ
           </label>
           <label>
             <input
@@ -100,7 +100,7 @@ const ContactUs = () => {
               checked={firstOption === 'boy'}
               onChange={(event) => setFirstOption(event.target.value)}
             />
-            Hakob
+            Հակոբ
           </label>
           {errors.firstOption && (
             <span className="error" role="alert">{errors.firstOption}</span>

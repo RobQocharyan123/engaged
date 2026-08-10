@@ -23,10 +23,12 @@ const getDeviceProfile = (width) => {
   const isCompact = width < 720 || hardwareConcurrency <= 4;
 
   return {
-    dprLimit: isCompact ? 1.25 : 2,
-    maxParticles: isCompact ? 260 : 620,
-    particlesPerBurst: isCompact ? 48 : 86,
-    launchDelay: isCompact ? [850, 1450] : [520, 1050],
+    dprLimit: isCompact ? 1 : 1.5,
+    maxParticles: isCompact ? 110 : 280,
+    particlesPerBurst: isCompact ? 28 : 52,
+    launchDelay: isCompact ? [1400, 2200] : [850, 1400],
+    frameInterval: isCompact ? 1000 / 30 : 1000 / 60,
+    useGlow: !isCompact,
   };
 };
 
@@ -134,8 +136,8 @@ const Confetti = () => {
       context.lineTo(rocket.x, rocket.y);
       context.strokeStyle = rocket.color;
       context.lineWidth = 2.2;
-      context.shadowBlur = 11;
-      context.shadowColor = rocket.color;
+      context.shadowBlur = profile.useGlow ? 8 : 0;
+      if (profile.useGlow) context.shadowColor = rocket.color;
       context.stroke();
 
       context.beginPath();
@@ -151,8 +153,8 @@ const Confetti = () => {
       context.lineTo(particle.x, particle.y);
       context.strokeStyle = particle.color;
       context.lineWidth = particle.width;
-      context.shadowBlur = 7;
-      context.shadowColor = particle.color;
+      context.shadowBlur = profile.useGlow ? 4 : 0;
+      if (profile.useGlow) context.shadowColor = particle.color;
       context.stroke();
     };
 
@@ -203,6 +205,11 @@ const Confetti = () => {
 
     const renderFrame = (now) => {
       if (!isRunning) return;
+
+      if (previousFrameAt && now - previousFrameAt < profile.frameInterval) {
+        animationFrame = window.requestAnimationFrame(renderFrame);
+        return;
+      }
 
       const elapsed = previousFrameAt ? now - previousFrameAt : 16.67;
       const frameScale = Math.min(2, Math.max(0.35, elapsed / 16.67));
