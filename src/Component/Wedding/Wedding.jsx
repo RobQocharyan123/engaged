@@ -1,9 +1,11 @@
 import './Wedding.css';
+import { formatWeddingDate } from '../../utils/weddingDate';
 
-const Wedding = () => {
+const Wedding = ({ weddingDate }) => {
+  const formattedDate = formatWeddingDate(weddingDate);
   return (
     <section className="wedding" aria-label="Պսակադրություն">
-      <p className="time">14 : 30</p>
+      <p className="time">{formattedDate?.time || '—'}</p>
       <p className="postProduction">Պսակադրություն</p>
       <p className="place">Սաղմոսավանք</p>
       <p className="adress">

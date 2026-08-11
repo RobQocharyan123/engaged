@@ -5,8 +5,10 @@ import {
   getRegisterErrorMessage,
   postRegisterData,
 } from '../../services/reigisterService';
+import { formatWeddingDate } from '../../utils/weddingDate';
 
-const ContactUs = () => {
+const ContactUs = ({ weddingDate }) => {
+  const formattedDate = formatWeddingDate(weddingDate);
   const [firstOption, setFirstOption] = useState('');
   const [name, setName] = useState('');
   const [secondOption, setSecondOption] = useState('');
@@ -77,7 +79,7 @@ const ContactUs = () => {
         եթե նախապես հաստատեք Ձեր <br /> ներկայությունը
       </h2>
       <p className="contactUsSmallText">
-        Կսպասենք Ձեր պատասխանին մինչև 20.10.2026
+        Կսպասենք Ձեր պատասխանին մինչև {formattedDate?.numeric || '—'}
       </p>
       <form onSubmit={handleSubmit} noValidate>
         <fieldset className="firstRadio">

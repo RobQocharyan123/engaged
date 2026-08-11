@@ -18,6 +18,7 @@ import musicFile from './Assets/music.mp3';
 function App() {
   const [isInvitationOpen, setIsInvitationOpen] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
+  const [weddingDate, setWeddingDate] = useState(null);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const audioRef = useRef(null);
   const contentRef = useRef(null);
@@ -96,19 +97,22 @@ function App() {
             {showCelebration && <Confetti />}
             <Header isPlaying={isMusicPlaying} onToggleMusic={toggleMusic} />
             <RevealSection>
-              <CountDown setShowCelebration={setShowCelebration} />
+              <CountDown
+                setShowCelebration={setShowCelebration}
+                onWeddingDateChange={setWeddingDate}
+              />
             </RevealSection>
             <RevealSection>
-              <InfoPage />
+              <InfoPage weddingDate={weddingDate} />
             </RevealSection>
             <RevealSection>
-              <Wedding />
+              <Wedding weddingDate={weddingDate} />
             </RevealSection>
             <RevealSection delay={0.06}>
               <Restaurant />
             </RevealSection>
             <RevealSection>
-              <ContactUs />
+              <ContactUs weddingDate={weddingDate} />
             </RevealSection>
             <RevealSection>
               <Footer />

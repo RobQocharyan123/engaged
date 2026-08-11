@@ -1,6 +1,8 @@
 import './InfoPage.css';
+import { formatWeddingDate } from '../../utils/weddingDate';
 
-const InfoPage = () => {
+const InfoPage = ({ weddingDate }) => {
+  const formattedDate = formatWeddingDate(weddingDate);
   return (
     <div className="infoPage">
       {' '}
@@ -13,8 +15,8 @@ const InfoPage = () => {
       </p>
       <p className="wishes">Հրավիրում ենք Ձեզ մեր հարսանիքին։</p>
       <p className="friendsText">
-        20 Հոկտեմբերի <br />
-        2026
+        {formattedDate?.dayAndMonth || '—'} <br />
+        {formattedDate?.year || ''}
       </p>
       <div className="line"></div>
     </div>

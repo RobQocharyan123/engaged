@@ -3,7 +3,6 @@ import './CountDown.css';
 import { getTimeToENdEngaged } from '../../services/reigisterService';
 
 const RESYNC_INTERVAL_MS = 30000;
-const WEDDING_DATE = Date.parse('2026-10-20T14:30:00+04:00');
 
 const EMPTY_TIME = {
   days: 0,
@@ -38,13 +37,21 @@ const getTimeLeft = (milliseconds) => {
 
 const parseCountdown = (response, receivedAt) => {
   const serverTime = Date.parse(response?.server_time);
+  const weddingDate = Date.parse(response?.target_at);
   const currentTime = Number.isFinite(serverTime) ? serverTime : receivedAt;
-  const remaining = WEDDING_DATE - currentTime;
+  const remaining = weddingDate - currentTime;
 
-  return { deadline: receivedAt + Math.max(0, remaining) };
+  if (!Number.isFinite(weddingDate)) {
+    throw new Error('The server returned an invalid wedding date.');
+  }
+
+  return {
+    deadline: receivedAt + Math.max(0, remaining),
+    weddingDate: response.target_at,
+  };
 };
 
-const CountDown = ({ setShowCelebration = NOOP }) => {
+const CountDown = ({ setShowCelebration = NOOP, onWeddingDateChange = NOOP }) => {
   const [target, setTarget] = useState(null);
   const [timeLeft, setTimeLeft] = useState(EMPTY_TIME);
   const [status, setStatus] = useState('loading');
@@ -67,6 +74,7 @@ const CountDown = ({ setShowCelebration = NOOP }) => {
       if (!mountedRef.current || requestId !== requestIdRef.current) return;
 
       setTarget(nextTarget);
+      onWeddingDateChange(nextTarget.weddingDate);
       setTimeLeft(getTimeLeft(nextTarget.deadline - Date.now()));
       setStatus('ready');
       setSyncError(false);
@@ -82,7 +90,7 @@ const CountDown = ({ setShowCelebration = NOOP }) => {
         setIsSyncing(false);
       }
     }
-  }, []);
+  }, [onWeddingDateChange]);
 
   useEffect(() => {
     mountedRef.current = true;
